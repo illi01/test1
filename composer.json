@@ -1,0 +1,15 @@
+{
+    "name": "pepe/test1",
+    "require": {
+        "phpunit/phpunit": "^9.4"
+    },
+    "authors": [
+        {
+            "name": "illi01",
+            "email": "pepekana08@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": ["src/"]
+    }
+}
