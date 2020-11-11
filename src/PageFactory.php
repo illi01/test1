@@ -9,29 +9,29 @@ class PageFactory
 
     public function createPageByAction()
     {
-       /* switch ($this->action) {
+        switch ($this->action) {
             case 'create-article':
                 $page = new ArticleFormPage();
+                break;
             case 'add-article':
-                $articleId = new Article()->create();
+                $article = new Article();
+                $articleId = $article->create();
                 $page = new ArticlePage($articleId);
+                $page->newArticle(true);
                 break;
             case 'add-comment':
-                $articleId = new Article($_POST['articleId'])->addComment();
-                $page = new ArticlePage($articleId)->newComment(true);
-                break;
-            case 'new-article':
-                $articleId = new Article()->create();
-                $page = new ArticlePage($articleId)->newArticle(true);
+                $article = new Article($_GET['articleId']);
+                $article->addComment();
+                $page = new ArticlePage($_GET['articleId']);
+                $page->newComment(true);
                 break;
             case 'article':
-                $page = new ArticlePage($_POST['articleId']);
+                $page = new ArticlePage($_GET['articleId']);
                 break;
             default:
                 $page = new IndexPage();
         }
-        return $page;*/
-        return new IndexPage();
+        return $page;
     }
 
 
