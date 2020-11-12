@@ -2,7 +2,13 @@
 
 abstract class Page implements PageBuilder
 {
-    public $pageHtml = '';
+    protected $pageHtml = '';
+    protected $db;
+
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
 
     public function addHeader()
     {
