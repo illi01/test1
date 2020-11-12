@@ -15,14 +15,14 @@ class PageFactory
                 break;
             case 'add-article':
                 $article = new Article();
-                $articleId = $article->create();
+                $articleId = $article->create($_POST['article-name'], $_POST['article-text'], $_POST['article-author']);
                 $page = new ArticlePage($articleId);
                 $page->newArticle(true);
                 break;
             case 'add-comment':
-                $article = new Article($_GET['articleId']);
-                $article->addComment();
-                $page = new ArticlePage($_GET['articleId']);
+                $article = new Article($_POST['article-id']);
+                $article->addComment($_POST['comment-text'], $_POST['comment-author'], $_POST['comment-email']);
+                $page = new ArticlePage($_POST['article-id']);
                 $page->newComment(true);
                 break;
             case 'article':

@@ -8,7 +8,7 @@ date_created timestamp default NOW(),
 creator_name varchar(255) not null
 );
 
-CREATE TABLE public.commnets (
+CREATE TABLE public.comments (
 id serial primary key,
 creator_name varchar(255) not null,
 email varchar(255) not null,

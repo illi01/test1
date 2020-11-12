@@ -5,8 +5,6 @@ ini_set('display_startup_errors', 1);
 
 include 'config.php';
 
-$db = new Database();
-
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $env = new Env($action);
 echo $env->createWebPage();

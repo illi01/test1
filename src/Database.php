@@ -11,7 +11,7 @@ class Database
     public function connect()
     {
         try {
-        $wrapper = new DbConnectionWrapper('PostgreSQL');
+        $wrapper = new DbConnectionWrapper(key(DB_SETTING));
         $conn = new PDO($wrapper->getDbString());
 
         return $conn;
@@ -25,9 +25,9 @@ class Database
     {
         try {
             $res = $this->connection->exec($query);
-            if ($res !== false) {
+            if ($res === false)
                 die("Error executing the query: $query With Error:" . var_export($this->connection->errorInfo(),true));
-            }
+
         } catch (PDOException $e){
             echo $e->getMessage();
         }
@@ -62,15 +62,37 @@ class Database
         $stmt = $this->query($query);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $data = array();
-        foreach ($row as $columnName => $columnVal) {
-            $data[$columnName] = htmlspecialchars($columnVal);
-        }
+        if ($row !== false) {
+            foreach ($row as $columnName => $columnVal) {
+                $data[$columnName] = htmlspecialchars($columnVal);
+            }
 
-        return $data;
+            return $data;
+        } else die("Error executing the query: $query With Error:" . var_export($this->connection->errorInfo(),true));
     }
 
     public function __destruct()
     {
         $this->connection = null;
-    }   
+    }
+
+    public function escape($string)
+    {
+        switch (key(DB_SETTING)) {
+            case 'PostgreSQL':
+            default:
+            $string = pg_escape_string($string);
+        }
+        return $string;
+    }
+
+    public function commit()
+    {
+        $this->connection->commit();
+    }
+
+    public function beginTransaction()
+    {
+        $this->connection->beginTransaction();
+    }
 }
