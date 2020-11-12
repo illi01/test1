@@ -2,7 +2,6 @@
 
 class Outputter
 {
-
     public function build(PageBuilder $builder)
     {
         $builder->addHeader();

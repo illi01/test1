@@ -35,7 +35,6 @@ class Database
 
     public function query($query)
     {
-
         $stmt = $this->connection->query($query);
         if($stmt === false){
             die("Error executing the query: $query With Error:" . var_export($this->connection->errorInfo(),true));
@@ -68,6 +67,7 @@ class Database
             }
 
             return $data;
+
         } else die("Error executing the query: $query With Error:" . var_export($this->connection->errorInfo(),true));
     }
 

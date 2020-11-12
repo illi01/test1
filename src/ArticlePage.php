@@ -48,7 +48,6 @@ class ArticlePage extends Page
     {
         $html = file_get_contents(DIR_TEMPLATES.'comment.html');
         $html = str_replace('{comment-author}', $comment->getAuthor(), $html);
-        var_dump($comment->getAuthor());
         $html = str_replace('{comment-date}', $comment->getDateCreated(), $html);
         $html = str_replace('{comment-email}', $comment->getEmail(), $html);
         $html = str_replace('{comment-text}', $comment->getText(), $html);
@@ -67,6 +66,4 @@ class ArticlePage extends Page
         $this->newArticle = true;
         return $this;
     }
-
-
 }

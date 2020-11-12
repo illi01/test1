@@ -3,6 +3,7 @@
 class PageFactory
 {
     private $action;
+
     public function __construct($action) {
         $this->action = $action;
     }
@@ -33,6 +34,4 @@ class PageFactory
         }
         return $page;
     }
-
-
 }
